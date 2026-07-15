@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 const heroSlides = [
   {
     id: 0,
-    title: 'Join us this Sunday at Graceway AGC for a Powerful time of worship',
+    title: 'Worship with us this Sunday at Graceway.',
     content:
       'Make sure to catch up, listen - as we have numerous speakers to share the word of Jesus!',
     href: '/connect',
