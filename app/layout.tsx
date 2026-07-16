@@ -58,13 +58,6 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
-        {/* #region debug-point A:pre-hydration-dom */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(()=>{const u="http://127.0.0.1:7777/event",s="hero-hydration-mismatch",p=(m,d)=>fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({sessionId:s,runId:"pre-fix",hypothesisId:"A",location:"app/layout.tsx:head",msg:m,data:d,ts:Date.now()})}).catch(()=>{}),sample=()=>Array.from(document.querySelectorAll("[data-trae-ref]")).slice(0,5).map((n)=>({tag:n.tagName,ref:n.getAttribute("data-trae-ref"),cls:n.className||""}));p("[DEBUG] head-script-init",{readyState:document.readyState,traeRefCount:document.querySelectorAll("[data-trae-ref]").length,sample:sample()});new MutationObserver(()=>{const c=document.querySelectorAll("[data-trae-ref]").length;if(c){p("[DEBUG] trae-ref-detected-before-hydration",{readyState:document.readyState,traeRefCount:c,sample:sample()})}}).observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:["data-trae-ref"]});document.addEventListener("DOMContentLoaded",()=>p("[DEBUG] dom-content-loaded",{readyState:document.readyState,traeRefCount:document.querySelectorAll("[data-trae-ref]").length,sample:sample()}),{once:true});})();`,
-          }}
-        />
-        {/* #endregion */}
         <link rel="stylesheet" href="/theme/adaptable/style488c.css" />
         <link rel="stylesheet" href="/theme-overrides.css" />
       </head>

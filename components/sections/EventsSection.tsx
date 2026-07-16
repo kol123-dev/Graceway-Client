@@ -7,9 +7,7 @@ const connectLinks = [
   { title: 'Sunday Fellowship', href: '/connect', image: '/assets/church-inside.jpg' },
   { title: 'Couples Fellowship', href: '/connect', image: '/assets/couples-2.jpg' },
   { title: 'Bible Study', href: '/connect', image: '/assets/rafael.jpg' },
-  { title: 'Graceway Intercessory', href: '/connect', image: '/assets/intercessory.png' },
-  { title: 'Men Fellowship', href: '/connect', image: '/assets/njehia-ndingor-pastor.jpg' },
-  { title: 'Womens Fellowship', href: '/connect', image: '/assets/women fellowship agc.jpg' },
+  { title: 's Fellowship', href: '/connect', image: '/assets/women fellowship agc.jpg' },
 ];
 
 const involvedLinks = [
