@@ -15,7 +15,7 @@ export function Footer() {
               <a href="tel:073117117300">Church Phone: 07311 711 7300</a>
             </h4>
             <h4>
-              <a href="mailto:hello@graceway.co.ke">Email: hello@graceway.co.ke</a>
+              <a href="mailto:contactkevenjuma@gmail.com">Email: contactkevenjuma@gmail.com</a>
             </h4>
             <h4>
               <a href="tel:0722352589">Pastor Antony: 0722 352589</a>
