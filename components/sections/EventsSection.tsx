@@ -12,11 +12,11 @@ const connectLinks = [
 ];
 
 const involvedLinks = [
-  { title: 'Membership', description: 'Our network of small groups that meet regularly across the Kitale.', href: '/connect', image: '/assets/membership-cert-celestine.jpg' },
+  { title: 'Membership', description: 'Our network of home cell groups meet regularly across Kitale.', href: '/connect', image: '/assets/membership-cert-celestine.jpg' },
   { title: 'Media Team', description: 'Every day our amazing teams work together to make church happen.', href: '/connect', image: '/assets/media-bg.jpg' },
   { title: 'Hospitality', description: 'Find out about our Hospitality Ministry and get involved.', href: '/connect', image: '/assets/hospitality.jpg' },
   { title: 'YOUTH', description: 'Find out more about our YOUTH ministry.', href: '/connect', image: '/assets/youth.jpg' },
-  { title: 'Kids', description: 'Find out whats happening over Summer at Graceway Kids.', href: '/connect', image: '/assets/baha-raise-hand.jpg' },
+  { title: 'Sunday School', description: 'Find out whats happening with Graceway Kids.', href: '/connect', image: '/assets/baha-raise-hand.jpg' },
   { title: 'Praise & Worship', description: 'Discover more about our Praise and Worship.', href: '/connect', image: '/assets/praise-worship-team.jpg' },
 ];
 

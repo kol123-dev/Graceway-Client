@@ -2,41 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-const infoSlides = [
-  {
-    id: 0,
-    bgImage:
-      '/uploads/2019/01/Mission-Message-2-Carousel-Images-2000x1500-1800x550.jpg',
-    title: 'Graceway Leadership',
-    description: 'Find out More about Our Leadership, Strategies and Beliefs right here!',
-    href: '/about/leadership',
-    buttonClass: 'button--black',
-    buttonText: 'READ NOW!',
-  },
-  {
-    id: 1,
-    bgImage:
-      '/uploads/2019/01/Mission-Message-2-Carousel-Images-2000x1500-1800x550.jpg',
-    title: 'Our Beliefs',
-    description: 'Find out More about Our Leadership, Strategies and Beliefs right here!',
-    href: '/about/our-beliefs',
-    buttonClass: 'button--purple',
-    buttonText: 'READ NOW!',
-  },
-  {
-    id: 2,
-    bgImage:
-      '/uploads/2019/01/Mission-Message-3-Carousel-Images-2000x1500-1800x550.jpg',
-    title: 'Our Strategies',
-    description: 'Find out More about Our Leadership, Strategies and Beliefs right here!',
-    href: '/about/strategies',
-    buttonClass: 'button--yellow',
-    buttonText: 'READ NOW!',
-  },
-];
+import { useEffect, useState } from 'react';
+import { ArrowRight, BookOpenText, ChevronLeft, ChevronRight, Images, Mic2 } from 'lucide-react';
+import styles from './pageShowcase.module.css';
 
 const gallerySlides = [
   {
@@ -53,75 +21,6 @@ const gallerySlides = [
   },
 ];
 
-function InfoCarousel() {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = window.setInterval(() => {
-      setCurrent((prev) => (prev + 1) % infoSlides.length);
-    }, 5000);
-    return () => window.clearInterval(timer);
-  }, []);
-
-  const previous = () => setCurrent((prev) => (prev - 1 + infoSlides.length) % infoSlides.length);
-  const next = () => setCurrent((prev) => (prev + 1) % infoSlides.length);
-
-  return (
-    <section className="relative w-full overflow-hidden" data-aos="fade-up" data-aos-delay="200">
-      <div className="relative w-full h-[500px]">
-        {infoSlides.map((slide, index) => (
-          <div
-            key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
-          >
-            <div className="relative w-full h-full">
-              <Image
-                src={slide.bgImage}
-                alt=""
-                fill
-                className="object-cover"
-                unoptimized
-              />
-              <div className="absolute inset-0 bg-black/40" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-                <h3 className="text-white text-3xl md:text-4xl font-bold mb-4">{slide.title}</h3>
-                <p className="text-white text-lg md:text-xl mb-8 max-w-2xl">{slide.description}</p>
-                <div className="mt-8">
-                  <Link
-                    href={slide.href}
-                    className={`button ${slide.buttonClass}`}
-                  >
-                    {slide.buttonText}
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-      
-      <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 z-20 flex justify-between pointer-events-none">
-        <button
-          type="button"
-          className="p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors pointer-events-auto text-white"
-          onClick={previous}
-          aria-label="Previous slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button
-          type="button"
-          className="p-3 bg-white/20 hover:bg-white/40 rounded-full transition-colors pointer-events-auto text-white"
-          onClick={next}
-          aria-label="Next slide"
-        >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-        </button>
-      </div>
-    </section>
-  );
-}
-
 function GalleryCarousel() {
   const [current, setCurrent] = useState(0);
 
@@ -129,174 +28,238 @@ function GalleryCarousel() {
     const timer = window.setInterval(() => {
       setCurrent((prev) => (prev + 1) % gallerySlides.length);
     }, 3000);
+
     return () => window.clearInterval(timer);
   }, []);
 
-  const previous = () =>
-    setCurrent((prev) => (prev - 1 + gallerySlides.length) % gallerySlides.length);
+  const previous = () => setCurrent((prev) => (prev - 1 + gallerySlides.length) % gallerySlides.length);
   const next = () => setCurrent((prev) => (prev + 1) % gallerySlides.length);
 
   return (
-    <div className="relative w-full overflow-hidden mt-8">
-      <div className="relative w-full h-[400px] md:h-[600px]">
+    <section className={styles.carousel}>
+      <div className={styles.carouselStage}>
         {gallerySlides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-500 ease-in-out ${index === current ? 'opacity-100 z-10' : 'opacity-0 z-0'}`}
+            className={`${styles.carouselSlide} ${index === current ? styles.carouselSlideActive : ''}`}
+            aria-hidden={index !== current}
           >
-            <div className="relative w-full h-full">
-              <Image
-                src={slide.image}
-                alt=""
-                fill
-                className="object-cover"
-                unoptimized
-              />
+            <div className="relative h-full w-full">
+              <Image src={slide.image} alt="Graceway gallery moment" fill className={styles.carouselImage} unoptimized />
+              <div className={styles.carouselContent}>
+                <span className={styles.eyebrow}>Church life</span>
+                <h3 className={styles.carouselTitle}>Moments from worship, fellowship, and ministry.</h3>
+                <p className={styles.carouselText}>
+                  Browse a rotating glimpse of the life and joy shared across Graceway gatherings and community moments.
+                </p>
+              </div>
             </div>
           </div>
         ))}
       </div>
-      
-      <div className="absolute top-1/2 -translate-y-1/2 left-4 right-4 z-20 flex justify-between pointer-events-none">
-        <button
-          type="button"
-          className="p-3 bg-white/50 hover:bg-white/80 rounded-full transition-colors pointer-events-auto text-gray-900"
-          onClick={previous}
-          aria-label="Previous image"
-        >
-          <ChevronLeft className="w-6 h-6" />
+
+      <div className={styles.carouselControls}>
+        <button type="button" className={styles.carouselButton} onClick={previous} aria-label="Previous image">
+          <ChevronLeft size={18} />
         </button>
-        <button
-          type="button"
-          className="p-3 bg-white/50 hover:bg-white/80 rounded-full transition-colors pointer-events-auto text-gray-900"
-          onClick={next}
-          aria-label="Next image"
-        >
-          <ChevronRight className="w-6 h-6" />
+        <button type="button" className={styles.carouselButton} onClick={next} aria-label="Next image">
+          <ChevronRight size={18} />
         </button>
       </div>
-    </div>
+    </section>
   );
 }
 
 export function MediaContent() {
   return (
-    <main>
-      <section className="inline-image page-banner" style={{ backgroundImage: 'url(/assets/mediablue.png)' }}>
-        <div className="container container--small">
-          <div className="page-banner--content">
-            <h1>MEDIA</h1>
+    <main className={styles.page}>
+      <section className={styles.hero} style={{ backgroundImage: 'url(/assets/mediablue.png)' }}>
+        <div className={styles.heroInner}>
+          <div className={styles.heroCopy}>
+            <span className={styles.eyebrow}>Graceway Media</span>
+            <h1 className={styles.heroTitle}>Messages, journal reflections, and church moments in one place.</h1>
+            <p className={styles.heroText}>
+              The media page brings together the main ways Graceway shares teaching and story: sermons for listening,
+              journal posts for slower reflection, and gallery moments from the life of the church.
+            </p>
+            <div className={styles.heroActions}>
+              <Link href="/media/sermon" className={styles.primaryLink}>
+                Listen to sermons
+                <ArrowRight size={16} />
+              </Link>
+              <Link href="/media/blog" className={styles.secondaryLink}>
+                Read the blog
+              </Link>
+            </div>
           </div>
+
+          <aside className={styles.heroAside}>
+            <div className={styles.heroPanel}>
+              <span className={styles.cardMeta}>Media focus</span>
+              <div className={styles.statGrid}>
+                <div className={styles.statCard}>
+                  <span className={styles.statLabel}>Listen</span>
+                  <span className={styles.statValue}>Sermons</span>
+                  <span className={styles.statNote}>Weekly teaching and revisited messages in one archive.</span>
+                </div>
+                <div className={styles.statCard}>
+                  <span className={styles.statLabel}>Read</span>
+                  <span className={styles.statValue}>Journal</span>
+                  <span className={styles.statNote}>Thoughtful writing and pastoral reflections from Graceway.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
         </div>
-        <div className="overlay" />
       </section>
 
-      <section className="text-block text-block--internal">
-        <div className="container container--small">
-          <div className="aos-init aos-animate text-block--internal-content" data-aos="fade-up" data-aos-delay="200">
-            <h3>
-              Stay connected and inspired through the Media Page of Graceway AGC! Here, you&apos;ll find a treasure trove
-              of resources to nourish your spiritual journey and keep you updated on church activities. Our media
-              library features:
-            </h3>
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <span className={styles.sectionEyebrow}>Media library</span>
+              <h2 className={styles.sectionTitle}>Three simple ways to stay connected through content.</h2>
+            </div>
+            <p className={styles.sectionText}>
+              Each area serves a different kind of engagement while keeping the page itself calm, readable, and not
+              overly crowded.
+            </p>
           </div>
-        </div>
-      </section>
 
-      <section className="section text-image aos-init aos-animate section--grey" data-aos="fade-up" data-aos-delay="200">
-        <div className="container container--small">
-          <div className="text-image--image">
-            <Image
-              src="/assets/maggie-sermon-poster.png"
-              alt="Sermons"
-              width={2000}
-              height={1500}
-              unoptimized
-              style={{ width: '100%', height: 'auto' }}
-            />
-          </div>
-          <div className="text-image--text">
-            <div className="text-image--text-content">
-              <h3>Sermons</h3>
-              <p>
-                Dive into life-changing messages that uplift and challenge you in your spiritual journey. Whether you
-                missed a Sunday service or want to revisit a powerful sermon, you can access recordings and stay
-                connected to God&apos;s Word.
+          <div className={styles.cardGrid}>
+            <article className={styles.card}>
+              <span className={styles.cardIcon}>
+                <Mic2 size={20} />
+              </span>
+              <span className={styles.cardMeta}>Audio and teaching</span>
+              <h3 className={styles.cardTitle}>Sermons</h3>
+              <p className={styles.cardText}>
+                Catch up on Sunday teaching, revisit recent messages, and stay rooted in Graceway&apos;s preaching
+                ministry through the week.
               </p>
-            </div>
-            <Link className="button button--cherry" href="/media/sermon">
-              Our Sermons
-            </Link>
-          </div>
-        </div>
-      </section>
+              <div className={styles.cardActions}>
+                <Link href="/media/sermon" className={styles.inlineLink}>
+                  Open sermons
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </article>
 
-      <section className="section text-image aos-init aos-animate section--light" data-aos="fade-up" data-aos-delay="200">
-        <div className="container container--small">
-          <div className="text-image--image text-image--image--text-left">
-            <Image
-              src="/assets/bookcover.png"
-              alt="Blog"
-              width={2000}
-              height={1500}
-              unoptimized
-              style={{ width: '100%', height: 'auto' }}
-            />
-          </div>
-          <div className="text-image--text text-image--text-right">
-            <div className="text-image--text-content">
-              <h3>Blog</h3>
-              <p>
-                Explore thoughtful articles and stories written to encourage and inform. From personal testimonies to
-                in-depth discussions on faith and life, our blog is a space for reflection and growth.
+            <article className={styles.card}>
+              <span className={styles.cardIcon}>
+                <BookOpenText size={20} />
+              </span>
+              <span className={styles.cardMeta}>Writing and reflection</span>
+              <h3 className={styles.cardTitle}>Blog</h3>
+              <p className={styles.cardText}>
+                Explore pastoral reflections, scripture-based encouragement, and longer-form journal writing from the
+                Graceway blog.
               </p>
-            </div>
-            <Link className="button button--yellow" href="/media/blog">
-              Our Blog
-            </Link>
-          </div>
-        </div>
-      </section>
+              <div className={styles.cardActions}>
+                <Link href="/media/blog" className={styles.inlineLink}>
+                  Open blog
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </article>
 
-      <section className="section text-image aos-init aos-animate section--grey" data-aos="fade-up" data-aos-delay="200">
-        <div className="container container--small">
-          <div className="text-image--image">
-            <Image
-              src="/assets/connectcollage.png"
-              alt="Our Gallery"
-              width={2000}
-              height={1500}
-              unoptimized
-              style={{ width: '100%', height: 'auto' }}
-            />
-          </div>
-          <div className="text-image--text">
-            <div className="text-image--text-content">
-              <h3>Our Gallery</h3>
-              <p>
-                Experience the vibrancy of Graceway AGC through photos and videos. Our gallery showcases memorable
-                moments from church events, celebrations, and ministries, capturing the heart of our community.
+            <article className={styles.card}>
+              <span className={styles.cardIcon}>
+                <Images size={20} />
+              </span>
+              <span className={styles.cardMeta}>Photos and moments</span>
+              <h3 className={styles.cardTitle}>Gallery</h3>
+              <p className={styles.cardText}>
+                See memorable moments from worship, gatherings, and ministry life across the Graceway community.
               </p>
-            </div>
-            <Link className="button button--blue" href="/media/gallery">
-              Our Gallery
-            </Link>
+              <div className={styles.cardActions}>
+                <Link href="/media/gallery" className={styles.inlineLink}>
+                  Open gallery
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <InfoCarousel />
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.featureGrid}>
+            <article className={styles.featureCard}>
+              <div className={styles.featureMedia}>
+                <Image src="/assets/maggie-sermon-poster.png" alt="Graceway sermon archive" fill className={styles.featureImage} unoptimized />
+              </div>
+              <div className={styles.featureBody}>
+                <span className={styles.cardMeta}>Sermon archive</span>
+                <h3 className={styles.cardTitle}>Teaching that remains accessible through the week.</h3>
+                <p className={styles.cardText}>
+                  Use the sermon archive to stay connected to Graceway&apos;s weekly teaching wherever you may be.
+                </p>
+              </div>
+            </article>
 
-      <section className="text-block text-block--internal">
-        <div className="container container--small">
-          <div className="aos-init aos-animate text-block--internal-content" data-aos="fade-up" data-aos-delay="200">
-            <h3>Check the Progress of the construction of the Graceway New Church</h3>
-            <div className="section gallery-section">
-              <GalleryCarousel />
+            <article className={styles.featureCard}>
+              <div className={styles.featureMedia}>
+                <Image src="/assets/bookcover.png" alt="Graceway blog cover" fill className={styles.featureImage} unoptimized />
+              </div>
+              <div className={styles.featureBody}>
+                <span className={styles.cardMeta}>Pastoral journal</span>
+                <h3 className={styles.cardTitle}>Longer-form reflections with a calmer reading experience.</h3>
+                <p className={styles.cardText}>
+                  The blog extends Sunday teaching into slower written reflection and practical encouragement.
+                </p>
+              </div>
+            </article>
+
+            <article className={styles.featureCard}>
+              <div className={styles.featureMedia}>
+                <Image src="/assets/connectcollage.png" alt="Graceway gallery collage" fill className={styles.featureImage} unoptimized />
+              </div>
+              <div className={styles.featureBody}>
+                <span className={styles.cardMeta}>Community gallery</span>
+                <h3 className={styles.cardTitle}>A visual record of the life shared by the church family.</h3>
+                <p className={styles.cardText}>
+                  Photos from church events, celebrations, and ministries help tell the story of Graceway&apos;s life together.
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <span className={styles.sectionEyebrow}>Community moments</span>
+              <h2 className={styles.sectionTitle}>A quieter gallery of life at Graceway.</h2>
             </div>
-            <div className="carousel--content-butt">
-              <Link href="/project" className="button button--purple">
-                CHECK NOW!
+            <p className={styles.sectionText}>
+              The gallery rotation keeps the page visual without feeling busy and offers a simple glimpse into church
+              life.
+            </p>
+          </div>
+
+          <GalleryCarousel />
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.ctaBand}>
+            <span className={styles.sectionEyebrow}>Beyond media</span>
+            <h2 className={styles.ctaBandTitle}>Follow the wider Graceway story beyond the media archive.</h2>
+            <p className={styles.ctaBandText}>
+              If you want more than messages and photos, you can also explore the project page and the broader church
+              story through the main site sections.
+            </p>
+            <div className={styles.ctaBandActions}>
+              <Link href="/project" className={styles.ghostLink}>
+                View project page
+              </Link>
+              <Link href="/about" className={styles.ghostLink}>
+                Read about Graceway
               </Link>
             </div>
           </div>

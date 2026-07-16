@@ -23,7 +23,7 @@ const heroSlides = [
     title: 'Catch up on our timely Messages of Christ',
     content:
       "If you're looking to be blessed with our messages, click here to find out .",
-    href: '/give',
+    href: '/media',
     buttonText: 'Our Sermons, Blog and Articles',
     buttonClass: 'button--blue',
     navClass: 'banner-slider--nav-item-blue',

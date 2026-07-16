@@ -1,6 +1,7 @@
-import { Heart, Zap, Users } from 'lucide-react';
+import { ArrowRight, Building2, HandHeart, Heart, Landmark, Repeat, Users } from 'lucide-react';
 import Link from 'next/link';
 import { Metadata } from 'next';
+import styles from '@/components/pages/pageShowcase.module.css';
 
 export const metadata: Metadata = {
   title: 'Give | Graceway AGC Kitale',
@@ -8,280 +9,243 @@ export const metadata: Metadata = {
     'Support our mission of lifting up Jesus and sharing the gospel. Find ways to give.',
 };
 
+const givingOptions = [
+  {
+    title: 'Bank or Mobile Giving',
+    description: 'Use our church giving channels for one-time support toward ministry and worship life.',
+    icon: Landmark,
+    link: '#bank-transfer',
+    meta: 'Simple one-time support',
+  },
+  {
+    title: 'During Worship Services',
+    description: 'Give in person during Sunday gatherings and special church moments of thanksgiving.',
+    icon: Heart,
+    link: '#service-giving',
+    meta: 'Sunday and special services',
+  },
+  {
+    title: 'Monthly Partnership',
+    description: 'Commit to a steady rhythm of generosity that helps Graceway plan ministry with confidence.',
+    icon: Repeat,
+    link: '#partnership',
+    meta: 'Consistent ongoing support',
+  },
+];
+
+const impactAreas = [
+  {
+    title: 'Worship, teaching, and discipleship',
+    description: 'Supporting the weekly life of the church through teaching resources, gatherings, and pastoral care.',
+    percentage: '40%',
+  },
+  {
+    title: 'Community care and outreach',
+    description: 'Extending practical support and gospel witness beyond the church walls into the wider community.',
+    percentage: '30%',
+  },
+  {
+    title: 'Construction and future readiness',
+    description: 'Helping Graceway prepare welcoming spaces for the growing church family and long-term ministry.',
+    percentage: '20%',
+  },
+  {
+    title: 'Youth and family formation',
+    description: 'Investing in younger generations, mentorship, and family-strengthening ministry rhythms.',
+    percentage: '10%',
+  },
+];
+
 export default function Give() {
-  const givingOptions = [
-    {
-      title: 'Online Giving',
-      description: 'Give securely through our online platform',
-      icon: Zap,
-      link: '#online-giving',
-    },
-    {
-      title: 'In-Person',
-      description: 'Give during our weekly services',
-      icon: Heart,
-      link: '#in-person',
-    },
-    {
-      title: 'Partner With Us',
-      description: 'Become a monthly giving partner',
-      icon: Users,
-      link: '#partnership',
-    },
-  ];
-
-  const impactAreas = [
-    {
-      title: 'Community Outreach',
-      description:
-        'Supporting local initiatives and helping those in need in our community.',
-      percentage: 40,
-    },
-    {
-      title: 'Worship & Teaching',
-      description:
-        'Maintaining our facilities and resources for worship and spiritual growth.',
-      percentage: 35,
-    },
-    {
-      title: 'Youth Ministry',
-      description:
-        'Investing in the next generation through youth programs and mentorship.',
-      percentage: 15,
-    },
-    {
-      title: 'Missions & Outreach',
-      description:
-        'Supporting mission work and church planting in unreached areas.',
-      percentage: 10,
-    },
-  ];
-
   return (
-    <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative h-80 bg-sky-600 text-white flex items-center">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-            <h1 className="text-5xl md:text-6xl font-bold">Generosity Matters</h1>
-            <p className="text-xl md:text-2xl mt-4 max-w-2xl">
-              Every gift helps us fulfill our mission to lift up Jesus and share
-              the gospel.
+    <main className={styles.page}>
+      <section
+        className={styles.hero}
+        style={{ backgroundImage: 'url(/assets/church-members-outside.jpg)' }}
+      >
+        <div className={styles.heroInner}>
+          <div className={styles.heroCopy}>
+            <span className={styles.eyebrow}>Graceway Giving</span>
+            <h1 className={styles.heroTitle}>Generosity that strengthens worship, witness, and community.</h1>
+            <p className={styles.heroText}>
+              Giving at Graceway is an act of worship. Every gift helps sustain pastoral care, teaching, outreach,
+              and the long-term work of building a church family that serves Kitale with faithfulness.
             </p>
-          </div>
-        </section>
-
-        {/* Why Give */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6">
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                  Why Give?
-                </h2>
-                <p className="text-lg text-gray-600 leading-relaxed">
-                  Giving is an act of worship and stewardship. When you give to
-                  Graceway, you&apos;re investing in ministry that transforms
-                  lives and impacts our community for Jesus Christ.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <Heart className="w-6 h-6 text-sky-600 mt-1" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">
-                        Partner in Ministry
-                      </h3>
-                      <p className="text-gray-600">
-                        Your gift directly supports our mission and vision.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <Heart className="w-6 h-6 text-sky-600 mt-1" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">
-                        Invest in Lives
-                      </h3>
-                      <p className="text-gray-600">
-                        Your generosity helps us reach and serve more people.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="flex-shrink-0">
-                      <Heart className="w-6 h-6 text-sky-600 mt-1" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-gray-900">
-                        Grow Spiritually
-                      </h3>
-                      <p className="text-gray-600">
-                        Giving deepens your relationship with God.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bg-sky-50 rounded-2xl p-8 space-y-6">
-                <h3 className="text-2xl font-bold text-gray-900">
-                  Your Gift Makes an Impact
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-900 font-medium">
-                      {'\u20A6'}5,000
-                    </span>
-                    <span className="text-sm text-gray-600">
-                      Provides meals for a family in need for a month
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-900 font-medium">
-                      {'\u20A6'}10,000
-                    </span>
-                    <span className="text-sm text-gray-600">
-                      Supports youth ministry programs for a quarter
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-900 font-medium">
-                      {'\u20A6'}50,000
-                    </span>
-                    <span className="text-sm text-gray-600">
-                      Funds community outreach initiatives
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Giving Options */}
-        <section className="py-16 md:py-24 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Ways to Give
-              </h2>
-              <p className="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
-                Choose the giving method that works best for you.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {givingOptions.map((option, index) => {
-                const IconComponent = option.icon;
-                return (
-                  <Link
-                    key={index}
-                    href={option.link}
-                    className="bg-white rounded-2xl p-8 text-center space-y-4 shadow-md hover:shadow-lg hover:border-sky-300 border border-transparent transition-all duration-300"
-                  >
-                    <div className="flex justify-center">
-                      <div className="bg-sky-100 p-4 rounded-lg">
-                        <IconComponent className="w-8 h-8 text-sky-600" />
-                      </div>
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {option.title}
-                    </h3>
-                    <p className="text-gray-600">
-                      {option.description}
-                    </p>
-                    <span className="inline-flex items-center text-sky-600 font-semibold">
-                      Learn More
-                      <svg
-                        className="w-4 h-4 ml-2"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* Where Your Money Goes */}
-        <section className="py-16 md:py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-                Where Your Giving Goes
-              </h2>
-              <p className="text-gray-600 text-lg mt-4 max-w-2xl mx-auto">
-                We&apos;re committed to transparency and stewardship of every
-                donation.
-              </p>
-            </div>
-
-            <div className="space-y-6">
-              {impactAreas.map((area, index) => (
-                <div key={index} className="space-y-3">
-                  <div className="flex justify-between items-start">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {area.title}
-                      </h3>
-                      <p className="text-gray-600 text-sm mt-1">
-                        {area.description}
-                      </p>
-                    </div>
-                    <span className="text-sky-600 font-bold ml-4">
-                      {area.percentage}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                    <div
-                      className="bg-sky-600 h-full rounded-full transition-all duration-500"
-                      style={{ width: `${area.percentage}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="py-16 md:py-24 bg-sky-600 text-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              Ready to Make a Difference?
-            </h2>
-            <p className="text-xl max-w-2xl mx-auto opacity-90">
-              Your generosity impacts lives and advances God&apos;s Kingdom.
-              Thank you for considering Graceway AGC.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="#online-giving"
-                className="inline-flex items-center justify-center bg-white text-sky-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-200"
-              >
-                Give Online
+            <div className={styles.heroActions}>
+              <Link href="#bank-transfer" className={styles.primaryLink}>
+                Explore giving options
+                <ArrowRight size={16} />
               </Link>
-              <Link
-                href="/connect"
-                className="inline-flex items-center justify-center border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-sky-700 transition-colors duration-200"
-              >
-                Contact Us
+              <Link href="/project" className={styles.secondaryLink}>
+                Support the project
               </Link>
             </div>
           </div>
-        </section>
+
+          <aside className={styles.heroAside}>
+            <div className={styles.heroPanel}>
+              <span className={styles.cardMeta}>Stewardship focus</span>
+              <div className={styles.statGrid}>
+                <div className={styles.statCard}>
+                  <span className={styles.statLabel}>Heart posture</span>
+                  <span className={styles.statValue}>Worship</span>
+                  <span className={styles.statNote}>Giving begins as gratitude before it becomes support.</span>
+                </div>
+                <div className={styles.statCard}>
+                  <span className={styles.statLabel}>Shared outcome</span>
+                  <span className={styles.statValue}>Impact</span>
+                  <span className={styles.statNote}>Every contribution strengthens ministry beyond one moment.</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <span className={styles.sectionEyebrow}>Why we give</span>
+            </div>
+          </div>
+
+          <div className={styles.introGrid}>
+            <div className={styles.panel}>
+              <h3 className={styles.panelTitle}>What your generosity supports</h3>
+              <ul className={styles.list}>
+                <li>
+                  <strong>Church life:</strong> Sunday worship, teaching, discipleship rhythms, and pastoral care.
+                </li>
+                <li>
+                  <strong>Community witness:</strong> Practical outreach and visible gospel presence in Kitale.
+                </li>
+                <li>
+                  <strong>Future readiness:</strong> The spaces, planning, and resources needed for sustainable growth.
+                </li>
+              </ul>
+            </div>
+
+            <div className={styles.metricGrid}>
+              <div className={styles.metricCard}>
+                <span className={styles.metricValue}>Worship</span>
+                <span className={styles.metricLabel}>An offering of trust and thanksgiving.</span>
+              </div>
+              <div className={styles.metricCard}>
+                <span className={styles.metricValue}>Care</span>
+                <span className={styles.metricLabel}>Meeting real needs inside and beyond the church.</span>
+              </div>
+              <div className={styles.metricCard}>
+                <span className={styles.metricValue}>Legacy</span>
+                <span className={styles.metricLabel}>Investing in spaces and people for years to come.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.sectionHeader}>
+            <div>
+              <span className={styles.sectionEyebrow}>Ways to give</span>
+              <h2 className={styles.sectionTitle}>Choose a rhythm that fits how you want to support Graceway.</h2>
+            </div>
+            <p className={styles.sectionText}>
+              Whether you are giving once, during worship, or as an ongoing partner, the goal is the same: faithful
+              support for the work God is doing through the church.
+            </p>
+          </div>
+
+          <div className={styles.cardGrid}>
+            {givingOptions.map((option) => {
+              const Icon = option.icon;
+
+              return (
+                <article key={option.title} className={styles.card}>
+                  <span className={styles.cardIcon}>
+                    <Icon size={20} />
+                  </span>
+                  <span className={styles.cardMeta}>{option.meta}</span>
+                  <h3 className={styles.cardTitle}>{option.title}</h3>
+                  <p className={styles.cardText}>{option.description}</p>
+                  <div className={styles.cardActions}>
+                    <Link href={option.link} className={styles.inlineLink}>
+                      Learn more
+                      <ArrowRight size={16} />
+                    </Link>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.cardGrid}>
+            <article id="bank-transfer" className={styles.card}>
+              <span className={styles.cardIcon}>
+                <Building2 size={20} />
+              </span>
+              <span className={styles.cardMeta}>Bank or mobile giving</span>
+              <h3 className={styles.cardTitle}>Use the church channels you already trust.</h3>
+              <p className={styles.cardText}>
+                Give toward the life of the church or the construction project using the Graceway giving channels
+                shared by the church office and leadership team.
+              </p>
+            </article>
+
+            <article id="service-giving" className={styles.card}>
+              <span className={styles.cardIcon}>
+                <HandHeart size={20} />
+              </span>
+              <span className={styles.cardMeta}>In-person giving</span>
+              <h3 className={styles.cardTitle}>Join the rhythm of generosity during worship.</h3>
+              <p className={styles.cardText}>
+                You can give during Sunday gatherings and thanksgiving moments as part of the worship life of the
+                congregation.
+              </p>
+            </article>
+
+            <article id="partnership" className={styles.card}>
+              <span className={styles.cardIcon}>
+                <Users size={20} />
+              </span>
+              <span className={styles.cardMeta}>Partnership giving</span>
+              <h3 className={styles.cardTitle}>Build with us through steady monthly support.</h3>
+              <p className={styles.cardText}>
+                If you want to support Graceway consistently, monthly partnership gives the church stronger planning
+                visibility and ministry stability.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+     
+
+      <section className={styles.section}>
+        <div className={styles.sectionShell}>
+          <div className={styles.ctaBand}>
+            <span className={styles.sectionEyebrow}>Next step</span>
+            <h2 className={styles.ctaBandTitle}>Ready to support the work of Graceway?</h2>
+            <p className={styles.ctaBandText}>
+              If you would like to give, partner more consistently, or ask about construction support, we would love
+              to point you to the right channel.
+            </p>
+            <div className={styles.ctaBandActions}>
+              <Link href="/project" className={styles.ghostLink}>
+                View the church project
+              </Link>
+              <Link href="/connect" className={styles.ghostLink}>
+                Contact the church office
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
