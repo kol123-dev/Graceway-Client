@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/site';
 
 const aboutPages = {
   mission: {
@@ -134,8 +135,13 @@ export function generateStaticParams(): Array<{ slug: Slug }> {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const page = aboutPages[resolvedParams.slug as Slug];
-  if (!page) return { title: 'About | Graceway AGC Kitale' };
-  return { title: `${page.title} | Graceway AGC Kitale` };
+  if (!page) return { title: 'About' };
+
+  return createPageMetadata({
+    title: page.title,
+    description: `${page.title} at Graceway AGC Kitale.`,
+    path: `/about/${resolvedParams.slug}`,
+  });
 }
 
 export default async function AboutDetailPage({ params }: { params: Promise<{ slug: string }> }) {

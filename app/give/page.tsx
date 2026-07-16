@@ -2,12 +2,15 @@ import { ArrowRight, Building2, HandHeart, Heart, Landmark, Repeat, Users } from
 import Link from 'next/link';
 import { Metadata } from 'next';
 import styles from '@/components/pages/pageShowcase.module.css';
+import { createPageMetadata } from '@/lib/site';
 
-export const metadata: Metadata = {
-  title: 'Give | Graceway AGC Kitale',
+export const metadata: Metadata = createPageMetadata({
+  title: 'Give',
   description:
-    'Support our mission of lifting up Jesus and sharing the gospel. Find ways to give.',
-};
+    'Support the ministry of Graceway AGC Kitale through clear, pastoral, and transparent giving options.',
+  path: '/give',
+  keywords: ['give to Graceway', 'church giving Kitale', 'Graceway generosity', 'support Graceway AGC'],
+});
 
 const givingOptions = [
   {

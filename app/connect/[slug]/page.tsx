@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
+import { createPageMetadata } from '@/lib/site';
 
 const connectPages = {
   'graceway-kids': {
@@ -119,11 +120,13 @@ export function generateStaticParams(): Array<{ slug: Slug }> {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const page = connectPages[resolvedParams.slug as Slug];
-  if (!page) return { title: 'Connect | Graceway AGC Kitale' };
-  return {
-    title: `${page.title} | Graceway AGC Kitale`,
+  if (!page) return { title: 'Connect' };
+  return createPageMetadata({
+    title: page.title,
     description: `${page.title} at Graceway AGC Kitale.`,
-  };
+    path: `/connect/${resolvedParams.slug}`,
+    image: page.bannerImage,
+  });
 }
 
 export default async function ConnectDetailPage({ params }: { params: Promise<{ slug: string }> }) {

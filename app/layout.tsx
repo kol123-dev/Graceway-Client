@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -17,25 +18,59 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Graceway AGC Kitale",
-  description:
-    "Graceway AGC Kitale - A dynamic family church in the heart of Kenya. We exist to lift up the name of Jesus and share the gospel from one to many.",
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  applicationName: siteConfig.shortName,
   icons: {
     icon: "/uploads/graceway-logos/graceway-logo-whitebg.png",
     shortcut: "/uploads/graceway-logos/graceway-logo-whitebg.png",
     apple: "/uploads/graceway-logos/graceway-logo-whitebg.png",
   },
-  metadataBase: new URL("https://www.gracewayagc.co.ke"),
+  metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+  },
+  keywords: [
+    "Graceway AGC Kitale",
+    "church in Kitale",
+    "Africa Gospel Church Kenya",
+    "Christian church Kitale",
+    "sermons Graceway",
+    "Graceway media",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Graceway AGC Kitale",
-    description:
-      "A dynamic family church dedicated to sharing the gospel and lifting up the name of Jesus.",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: "/",
+    siteName: siteConfig.name,
     type: "website",
-    locale: "en_US",
+    locale: siteConfig.locale,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        alt: siteConfig.name,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@Gracewaycc",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    images: [siteConfig.ogImage],
   },
 };
 
@@ -50,6 +85,30 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const organizationJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Church",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    logo: absoluteUrl(siteConfig.logo),
+    image: absoluteUrl(siteConfig.ogImage),
+    description: siteConfig.description,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Kitale",
+      addressCountry: "KE",
+    },
+  };
+
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
+    inLanguage: "en",
+  };
+
   return (
     <html
       lang="en"
@@ -60,6 +119,14 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="/theme/adaptable/style488c.css" />
         <link rel="stylesheet" href="/theme-overrides.css" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
       </head>
       <body
         className="bg-white text-gray-900 flex flex-col min-h-screen font-sans"
