@@ -4,19 +4,21 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 const connectLinks = [
-  { title: 'Sunday Fellowship', href: '/connect', image: '/assets/church-inside.jpg' },
-  { title: 'Couples Fellowship', href: '/connect', image: '/assets/couples-2.jpg' },
-  { title: 'Bible Study', href: '/connect', image: '/assets/rafael.jpg' },
-  { title: 's Fellowship', href: '/connect', image: '/assets/women fellowship agc.jpg' },
+  { title: 'Sunday Fellowship', href: '/connect', image: '/assets/church-inside.jpg', alt: 'Graceway Sunday Fellowship gathering' },
+  { title: 'Couples Fellowship', href: '/connect/graceway-couples', image: '/assets/couples-2.jpg', alt: 'Graceway couples fellowship members together' },
+  { title: 'Bible Study', href: '/connect/bible-study', image: '/assets/rafael.jpg', alt: 'Graceway Bible study teaching session' },
+  { title: 'Graceway Intercessory', href: '/connect', image: '/assets/members-inside-clap.jpg', alt: 'Graceway intercessory prayer gathering' },
+  { title: 'Men Fellowship', href: '/connect/men-to-men', image: '/assets/njehia-ndingor-pastor.jpg', alt: 'Graceway men fellowship ministry' },
+  { title: 'Women Fellowship', href: '/connect/graceway-women', image: '/assets/women fellowship agc.jpg', alt: 'Graceway women fellowship ministry' },
 ];
 
 const involvedLinks = [
-  { title: 'Membership', description: 'Our network of home cell groups meet regularly across Kitale.', href: '/connect', image: '/assets/membership-cert-celestine.jpg' },
-  { title: 'Media Team', description: 'Every day our amazing teams work together to make church happen.', href: '/connect', image: '/assets/media-bg.jpg' },
-  { title: 'Hospitality', description: 'Find out about our Hospitality Ministry and get involved.', href: '/connect', image: '/assets/hospitality.jpg' },
-  { title: 'YOUTH', description: 'Find out more about our YOUTH ministry.', href: '/connect', image: '/assets/youth.jpg' },
-  { title: 'Sunday School', description: 'Find out whats happening with Graceway Kids.', href: '/connect', image: '/assets/baha-raise-hand.jpg' },
-  { title: 'Praise & Worship', description: 'Discover more about our Praise and Worship.', href: '/connect', image: '/assets/praise-worship-team.jpg' },
+  { title: 'Membership', description: 'Our network of home cell groups meet regularly across Kitale.', href: '/connect', image: '/assets/membership-cert-celestine.jpg', alt: 'Graceway membership and discipleship certificate moment' },
+  { title: 'Media Team', description: 'Every day our amazing teams work together to make church happen.', href: '/media', image: '/assets/media-bg.jpg', alt: 'Graceway media team serving during church production' },
+  { title: 'Hospitality', description: 'Find out about our Hospitality Ministry and get involved.', href: '/connect', image: '/assets/hospitality.jpg', alt: 'Graceway hospitality ministry serving the congregation' },
+  { title: 'YOUTH', description: 'Find out more about our YOUTH ministry.', href: '/connect/youths-fearless', image: '/assets/youth.jpg', alt: 'Graceway youth ministry gathering' },
+  { title: 'Sunday School', description: 'Find out whats happening with Graceway Kids.', href: '/connect/graceway-kids', image: '/assets/baha-raise-hand.jpg', alt: 'Graceway Sunday School children raising hands in class' },
+  { title: 'Praise & Worship', description: 'Discover more about our Praise and Worship.', href: '/connect/praise-worship', image: '/assets/praise-worship-team.jpg', alt: 'Graceway praise and worship team leading music' },
 ];
 
 export function EventsSection() {
@@ -38,7 +40,7 @@ export function EventsSection() {
                 <div className="page-links--image" aria-hidden="true" style={{ inset: 0 }}>
                   <Image
                     src={item.image}
-                    alt=""
+                    alt={item.alt}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 500px) 50vw, 100vw"
                     unoptimized
@@ -88,7 +90,7 @@ export function EventsSection() {
                 >
                   <Image
                     src={item.image}
-                    alt=""
+                    alt={item.alt}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 500px) 50vw, 100vw"
                     unoptimized
@@ -96,7 +98,7 @@ export function EventsSection() {
                   />
                 </div>
                 <div className="page-desc-blocks--item-content">
-                  <h5 className="page-desc-blocks--item-title">{item.title}</h5>
+                  <h3 className="page-desc-blocks--item-title">{item.title}</h3>
                   <p>{item.description}</p>
                 </div>
               </Link>

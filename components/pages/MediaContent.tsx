@@ -10,14 +10,17 @@ const gallerySlides = [
   {
     id: 0,
     image: '/uploads/2019/01/Vision-Book-1-Gallery-Images-2000x1500-1160x700.jpg',
+    alt: 'Graceway congregation during a worship and fellowship gathering',
   },
   {
     id: 1,
     image: '/uploads/2019/01/Vision-Book-3-Gallery-Images-2000x1500-1160x700.jpg',
+    alt: 'Graceway church members sharing a community ministry moment',
   },
   {
     id: 2,
     image: '/uploads/2019/01/Vision-Book-2-Gallery-Images-2000x1500-1160x700.jpg',
+    alt: 'Graceway AGC event scene captured for the media gallery',
   },
 ];
 
@@ -45,7 +48,7 @@ function GalleryCarousel() {
             aria-hidden={index !== current}
           >
             <div className="relative h-full w-full">
-              <Image src={slide.image} alt="Graceway gallery moment" fill className={styles.carouselImage} unoptimized />
+              <Image src={slide.image} alt={slide.alt} fill className={styles.carouselImage} unoptimized />
               <div className={styles.carouselContent}>
                 <span className={styles.eyebrow}>Church life</span>
                 <h3 className={styles.carouselTitle}>Moments from worship, fellowship, and ministry.</h3>
