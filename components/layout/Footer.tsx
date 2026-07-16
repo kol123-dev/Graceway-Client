@@ -11,18 +11,10 @@ export function Footer() {
         <div className="footer__left-half">
           <div className="footer__contact-us">
             <h3 className="footer--title">Contact us</h3>
-            <h4>
-              <a href="tel:073117117300">Church Phone: 07311 711 7300</a>
-            </h4>
-            <h4>
-              <a href="mailto:contactkevenjuma@gmail.com">Email: contactkevenjuma@gmail.com</a>
-            </h4>
-            <h4>
-              <a href="tel:0722352589">Pastor Antony: 0722 352589</a>
-            </h4>
-            <h4>
-              <a href="tel:0722299713">Pastor Mwangi: 0722 299713</a>
-            </h4>
+            <h4>Church Phone: 07311 711 7300</h4>
+            <h4>Email: contactkevenjuma@gmail.com</h4>
+            <h4>Pastor Antony: 0722 352589</h4>
+            <h4>Pastor Mwangi: 0722 299713</h4>
           </div>
 
           <ul className="social-links" itemScope itemType="http://schema.org/Organization">
