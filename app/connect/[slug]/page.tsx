@@ -1,6 +1,7 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Metadata } from 'next';
-import { createPageMetadata } from '@/lib/site';
+import { createBreadcrumbJsonLd, createPageMetadata, createWebPageJsonLd } from '@/lib/site';
 
 const connectPages = {
   'graceway-kids': {
@@ -135,48 +136,88 @@ export default async function ConnectDetailPage({ params }: { params: Promise<{ 
 
   if (!page) return null;
 
-  return (
-    <main>
-      <section className="inline-image page-banner" style={{ backgroundImage: `url(${page.bannerImage})` }}>
-        <div className="container container--small">
-          <div className="page-banner--content">
-            <h1>{page.bannerTitle}</h1>
-          </div>
-        </div>
-        <div className="overlay" />
-      </section>
+  const description = `${page.title} at Graceway AGC Kitale.`;
+  const breadcrumbItems = [
+    { name: 'Home', path: '/' },
+    { name: 'Connect', path: '/connect' },
+    { name: page.title, path: `/connect/${resolvedParams.slug}` },
+  ];
 
-      {'html' in page ? (
-        <section className="section-page-content">
+  const breadcrumbJsonLd = createBreadcrumbJsonLd(breadcrumbItems);
+  const webPageJsonLd = createWebPageJsonLd({
+    title: page.title,
+    description,
+    path: `/connect/${resolvedParams.slug}`,
+    type: 'CollectionPage',
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <main>
+        <section className="inline-image page-banner" style={{ backgroundImage: `url(${page.bannerImage})` }}>
           <div className="container container--small">
-            <div className="single-archive--content" dangerouslySetInnerHTML={{ __html: page.html }} />
-          </div>
-        </section>
-      ) : (
-        <section className="section text-image aos-init aos-animate section--light" data-aos="fade-up" data-aos-delay="200">
-          <div className="container container--small">
-            <div className="text-image--image">
-              <Image
-                src={page.sectionImage}
-                alt={page.title}
-                width={1000}
-                height={1000}
-                unoptimized
-                style={{ width: '100%', height: 'auto' }}
-              />
+            <div className="page-banner--content">
+              <nav aria-label="Breadcrumb" style={{ marginBottom: '1rem', fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.88 }}>
+                <Link href="/">Home</Link>
+                {' / '}
+                <Link href="/connect">Connect</Link>
+                {' / '}
+                <span>{page.title}</span>
+              </nav>
+              <h1>{page.bannerTitle}</h1>
             </div>
-            <div className="text-image--text">
-              <div>
-                <h4>{page.sectionTitle}</h4>
-                {page.paragraphs.map((p, idx) => (
-                  <p key={`${resolvedParams.slug}-${idx}`}>{p}</p>
-                ))}
+          </div>
+          <div className="overlay" />
+        </section>
+
+        {'html' in page ? (
+          <section className="section-page-content">
+            <div className="container container--small">
+              <div className="single-archive--content" dangerouslySetInnerHTML={{ __html: page.html }} />
+              <p>
+                Return to the <Link href="/connect">Connect page</Link> or explore the wider church story on the{' '}
+                <Link href="/about">About page</Link>.
+              </p>
+            </div>
+          </section>
+        ) : (
+          <section className="section text-image aos-init aos-animate section--light" data-aos="fade-up" data-aos-delay="200">
+            <div className="container container--small">
+              <div className="text-image--image">
+                <Image
+                  src={page.sectionImage}
+                  alt={page.title}
+                  width={1000}
+                  height={1000}
+                  unoptimized
+                  style={{ width: '100%', height: 'auto' }}
+                />
+              </div>
+              <div className="text-image--text">
+                <div>
+                  <h2>{page.sectionTitle}</h2>
+                  {page.paragraphs.map((p, idx) => (
+                    <p key={`${resolvedParams.slug}-${idx}`}>{p}</p>
+                  ))}
+                  <p>
+                    You can also return to the <Link href="/connect">Connect page</Link> or read more{' '}
+                    <Link href="/about">about Graceway</Link>.
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-      )}
-    </main>
+          </section>
+        )}
+      </main>
+    </>
   );
 }
 

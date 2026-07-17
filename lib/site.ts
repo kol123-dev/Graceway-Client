@@ -16,6 +16,11 @@ export function absoluteUrl(path = '/') {
   return new URL(path, siteConfig.url).toString();
 }
 
+export type BreadcrumbItem = {
+  name: string;
+  path: string;
+};
+
 type PageMetadataOptions = {
   title: string;
   description: string;
@@ -61,6 +66,46 @@ export function createPageMetadata({
       title: fullTitle,
       description,
       images: [image],
+    },
+  };
+}
+
+export function createBreadcrumbJsonLd(items: BreadcrumbItem[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      item: absoluteUrl(item.path),
+    })),
+  };
+}
+
+type WebPageJsonLdOptions = {
+  title: string;
+  description: string;
+  path: string;
+  type?: string;
+};
+
+export function createWebPageJsonLd({
+  title,
+  description,
+  path,
+  type = 'WebPage',
+}: WebPageJsonLdOptions) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': type,
+    name: title,
+    description,
+    url: absoluteUrl(path),
+    isPartOf: {
+      '@type': 'WebSite',
+      name: siteConfig.name,
+      url: siteConfig.url,
     },
   };
 }

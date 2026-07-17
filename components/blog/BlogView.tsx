@@ -307,6 +307,24 @@ export function BlogPostView({ post }: { post: BlogPost }) {
         <div className="container container--small">
           <div className={styles.detailHeroLayout}>
             <div className={styles.detailHeroCopy}>
+              <nav
+                aria-label="Breadcrumb"
+                style={{
+                  marginBottom: '1rem',
+                  fontSize: '0.82rem',
+                  letterSpacing: '0.08em',
+                  textTransform: 'uppercase',
+                  opacity: 0.78,
+                }}
+              >
+                <Link href="/">Home</Link>
+                {' / '}
+                <Link href="/media">Media</Link>
+                {' / '}
+                <Link href="/media/blog">Blog</Link>
+                {' / '}
+                <span>{post.title}</span>
+              </nav>
               <span className={styles.eyebrow}>{post.category}</span>
               <div className={styles.detailMeta}>
                 <span>

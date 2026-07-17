@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
-import { createPageMetadata } from '@/lib/site';
+import Link from 'next/link';
+import { createBreadcrumbJsonLd, createPageMetadata, createWebPageJsonLd } from '@/lib/site';
 
 const aboutPages = {
   mission: {
@@ -149,25 +150,61 @@ export default async function AboutDetailPage({ params }: { params: Promise<{ sl
   const page = aboutPages[resolvedParams.slug as Slug];
   if (!page) return null;
 
-  return (
-    <main>
-      <section className="inline-image page-banner" style={{ backgroundImage: `url(${page.bannerImage})` }}>
-        <div className="container container--small">
-          <div className="page-banner--content">
-            <h1>{page.title}</h1>
-          </div>
-        </div>
-        <div className="overlay" />
-      </section>
+  const description = `${page.title} at Graceway AGC Kitale.`;
+  const breadcrumbItems = [
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: page.title, path: `/about/${resolvedParams.slug}` },
+  ];
 
-      <section className="text-block text-block--internal">
-        <div className="container container--small">
-          <div className="aos-init aos-animate text-block--internal-content" data-aos="fade-up" data-aos-delay="200">
-            <div dangerouslySetInnerHTML={{ __html: page.html }} />
+  const breadcrumbJsonLd = createBreadcrumbJsonLd(breadcrumbItems);
+  const webPageJsonLd = createWebPageJsonLd({
+    title: page.title,
+    description,
+    path: `/about/${resolvedParams.slug}`,
+    type: 'AboutPage',
+  });
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <main>
+        <section className="inline-image page-banner" style={{ backgroundImage: `url(${page.bannerImage})` }}>
+          <div className="container container--small">
+            <div className="page-banner--content">
+              <nav aria-label="Breadcrumb" style={{ marginBottom: '1rem', fontSize: '0.82rem', letterSpacing: '0.08em', textTransform: 'uppercase', opacity: 0.88 }}>
+                <Link href="/">Home</Link>
+                {' / '}
+                <Link href="/about">About</Link>
+                {' / '}
+                <span>{page.title}</span>
+              </nav>
+              <h1>{page.title}</h1>
+            </div>
           </div>
-        </div>
-      </section>
-    </main>
+          <div className="overlay" />
+        </section>
+
+        <section className="text-block text-block--internal">
+          <div className="container container--small">
+            <div className="aos-init aos-animate text-block--internal-content" data-aos="fade-up" data-aos-delay="200">
+              <div dangerouslySetInnerHTML={{ __html: page.html }} />
+              <p>
+                Continue exploring the church through the <Link href="/connect">Connect page</Link> or follow the{' '}
+                <Link href="/about/construction-project">construction project story</Link>.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   );
 }
 

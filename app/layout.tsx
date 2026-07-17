@@ -25,9 +25,12 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   applicationName: siteConfig.shortName,
   icons: {
-    icon: "/uploads/graceway-logos/graceway-logo-whitebg.png",
-    shortcut: "/uploads/graceway-logos/graceway-logo-whitebg.png",
-    apple: "/uploads/graceway-logos/graceway-logo-whitebg.png",
+    icon: [
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+    ],
+    shortcut: "/favicon-48x48.png",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   metadataBase: new URL(siteConfig.url),
   alternates: {

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { BlogPostView } from '@/components/blog/BlogView';
 import { getAllBlogPosts, getBlogPostBySlug } from '@/lib/mockBlogPosts';
-import { absoluteUrl, createPageMetadata, siteConfig } from '@/lib/site';
+import { absoluteUrl, createBreadcrumbJsonLd, createPageMetadata, siteConfig } from '@/lib/site';
 
 type BlogPostPageProps = {
   params: Promise<{
@@ -46,7 +46,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     datePublished: new Date(post.publishedAt).toISOString(),
@@ -66,8 +66,19 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     mainEntityOfPage: absoluteUrl(`/media/blog/${post.slug}`),
   };
 
+  const breadcrumbJsonLd = createBreadcrumbJsonLd([
+    { name: 'Home', path: '/' },
+    { name: 'Media', path: '/media' },
+    { name: 'Blog', path: '/media/blog' },
+    { name: post.title, path: `/media/blog/${post.slug}` },
+  ]);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
