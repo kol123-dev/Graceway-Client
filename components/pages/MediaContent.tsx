@@ -121,12 +121,9 @@ export function MediaContent() {
           <div className={styles.sectionHeader}>
             <div>
               <span className={styles.sectionEyebrow}>Media library</span>
-              <h2 className={styles.sectionTitle}>Three simple ways to stay connected through content.</h2>
+              <h2 className={styles.sectionTitle}>Stay connected through uplifting content.</h2>
             </div>
-            <p className={styles.sectionText}>
-              Each area serves a different kind of engagement while keeping the page itself calm, readable, and not
-              overly crowded.
-            </p>
+            
           </div>
 
           <div className={styles.cardGrid}>
@@ -186,7 +183,7 @@ export function MediaContent() {
         </div>
       </section>
 
-      <section className={styles.section}>
+      {/* <section className={styles.section}>
         <div className={styles.sectionShell}>
           <div className={styles.featureGrid}>
             <article className={styles.featureCard}>
@@ -229,9 +226,9 @@ export function MediaContent() {
             </article>
           </div>
         </div>
-      </section>
+      </section> */}
 
-      <section className={styles.section}>
+      {/* <section className={styles.section}>
         <div className={styles.sectionShell}>
           <div className={styles.sectionHeader}>
             <div>
@@ -239,20 +236,19 @@ export function MediaContent() {
               <h2 className={styles.sectionTitle}>A quieter gallery of life at Graceway.</h2>
             </div>
             <p className={styles.sectionText}>
-              The gallery rotation keeps the page visual without feeling busy and offers a simple glimpse into church
-              life.
+              A simple glimpse into Graceway African Gospel church in Kitale.
             </p>
           </div>
 
           <GalleryCarousel />
         </div>
-      </section>
+      </section> */}
 
       <section className={styles.section}>
         <div className={styles.sectionShell}>
           <div className={styles.ctaBand}>
             <span className={styles.sectionEyebrow}>Beyond media</span>
-            <h2 className={styles.ctaBandTitle}>Follow the wider Graceway story beyond the media archive.</h2>
+            <h2 className={styles.ctaBandTitle}>Follow the wider Graceway Church in Kitale story beyond the media archive.</h2>
             <p className={styles.ctaBandText}>
               If you want more than messages and photos, you can also explore the project page and the broader church
               story through the main site sections.
