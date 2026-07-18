@@ -31,6 +31,9 @@ export default function SermonPage() {
               the week, and remain connected to the teaching life of the church.
             </p>
             <p>
+              Explore our full sermon archive on YouTube: <Link href="https://www.youtube.com/@GracewayAGC">Graceway AGC Sermons</Link>
+            </p>
+            <p>
               As the sermon archive expands, you can also visit the <Link href="/media">media hub</Link>, read the{' '}
               <Link href="/media/blog">Graceway blog</Link>, or learn more <Link href="/about">about Graceway</Link>.
             </p>

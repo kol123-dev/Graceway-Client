@@ -197,13 +197,7 @@ export function BlogIndexView() {
                   ))}
                 </div>
               </div>
-              <div className={styles.sidebarBlock}>
-                <span className={styles.eyebrow}>Editorial Note</span>
-                <p className={styles.sidebarCopy}>
-                  These are Pastor Cyrus Mwangi&apos;s real reflections, structured so the same design
-                  can later connect to a CMS or API without changing the reading experience.
-                </p>
-              </div>
+              
             </aside>
           </div>
         </div>
@@ -216,10 +210,6 @@ export function BlogIndexView() {
               <span className={styles.eyebrow}>Latest Stories</span>
               <h2 className={styles.sectionTitle}>Recent journal notes from Graceway.</h2>
             </div>
-            <p className={styles.sectionLead}>
-              A clean reading experience with pastoral perspective, community stories, and
-              practical faith conversations.
-            </p>
           </div>
 
           <div className={styles.streamLayout}>
@@ -232,8 +222,7 @@ export function BlogIndexView() {
               <span className={styles.eyebrow}>Weekly Reading Rhythm</span>
               <h3>Read slowly. Reflect deeply. Return during the week.</h3>
               <p>
-                The journal layout is intentionally calm and spacious so longer reflections still
-                feel inviting rather than heavy.
+                You are always invited to come back.
               </p>
               <Link href="/media" className={styles.primaryAction}>
                 Explore all media
